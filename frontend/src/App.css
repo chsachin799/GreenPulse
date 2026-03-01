@@ -1,48 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
 .App {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  border-radius: 10px;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  /* For ticker */
+  transition: filter 1s ease;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.App.night {
+  filter: brightness(0.8) contrast(1.2);
 }
 
-label {
+.header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  margin: 0;
+}
+
+.prediction-form {
+  background: rgba(10, 20, 30, 0.8);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.form-grid {
+  display: grid;
+  gap: 15px;
+}
+
+.form-group label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
+  color: #00ffff;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
-input, select {
+.form-group select,
+.form-group input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
 }
 
-button {
+.form-group select:focus,
+.form-group input:focus {
+  border-color: #00ff7f;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
+}
+
+.submit-btn {
   width: 100%;
-  padding: 12px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #218838;
-}
-
-.result {
-  margin-top: 20px;
   padding: 15px;
-  background-color: #e9ecef;
-  border-radius: 5px;
-  text-align: center;
+  margin-top: 20px;
+  background: linear-gradient(45deg, #00ff7f, #00cccc);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ff7f;
+}
+
+.submit-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.widget-panel {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.mission-btn {
+  width: 100%;
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid #00ff7f;
+  color: #00ff7f;
+  padding: 10px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mission-btn:hover {
+  background: rgba(0, 255, 127, 0.2);
+  letter-spacing: 2px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+  color: #00ff7f;
+}
+
+/* Light Mode Overrides */
+.app-theme-light {
+  background-color: #f0f4f8;
+  color: #1a202c;
+}
+
+.app-theme-light .header h1 {
+  text-shadow: 0 0 10px #2f855a !important;
+  color: #2f855a !important;
+}
+
+.app-theme-light .prediction-form,
+.app-theme-light .result-card,
+.app-theme-light .ai-box,
+.app-theme-light .dashboard-grid>div>div {
+  /* Target all major cards */
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e0 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  color: #2d3748 !important;
+}
+
+.app-theme-light .form-group label {
+  color: #2d3748 !important;
+  font-weight: 600;
+}
+
+.app-theme-light input,
+.app-theme-light select {
+  background: #fff !important;
+  border: 1px solid #cbd5e0 !important;
+  color: #2d3748 !important;
+}
+
+.app-theme-light .submit-btn {
+  background: linear-gradient(45deg, #48bb78, #38a169);
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-theme-light h2,
+.app-theme-light h3,
+.app-theme-light h4 {
+  color: #2d3748 !important;
+}
+
+/* Specific component overrides for light mode */
+.app-theme-light .tab-btn-active {
+  background: #48bb78 !important;
+  color: white !important;
+}
+
+.app-theme-light .tab-btn-inactive {
+  color: #4a5568 !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .header {
+    padding: 0 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-grid>div {
+    grid-template-columns: 1fr !important;
+  }
 }
