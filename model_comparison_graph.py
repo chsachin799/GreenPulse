@@ -6,7 +6,7 @@ import os
 sns.set(style="whitegrid")
 
 # Data
-models = ['Random Forest (Reference)', 'Random Forest (Ours)']
+models = ['Random Forest (Reference)', 'Random Forest (Proposed)']
 r2_scores = [0.986, 0.987777]
 colors = ['#95a5a6', '#2ecc71'] # Grey for reference, Green for ours
 
